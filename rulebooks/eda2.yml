@@ -14,5 +14,5 @@
       condition: event.payload.message == "fail"
       action:
         run_job_template:
-        name: hello
-        organization: "Default"
+          name: hello
+          organization: "Default"
