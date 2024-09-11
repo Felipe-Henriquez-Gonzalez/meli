@@ -1,0 +1,9 @@
+---
+- name: setup apache
+  hosts: all
+  become: true
+  tasks:
+    - name: httpd service started
+      ansible.builtin.service:
+        name: httpd
+        state: started
