@@ -1,0 +1,34 @@
+---
+- name: Escuchar eventos desde datadog
+  hosts: all
+  sources:
+    - ansible.eda.webhook:
+        host: 0.0.0.0
+        port: 4999
+
+
+  rules:
+    - name: High CPU Usage Detected
+      condition: event.payload.event_title == "[Triggered] CPU Load is high"
+      action:
+        run_workflow_template:
+          name: "Automated Response High CPU EDA"
+          organization: "default"
+          job_args:
+            extra_vars:
+              vm_name: "{{ event.payload.hostname }}"
+
+    - name: Web Application Down Detected
+      condition: event.payload.event_title == "[Triggered] Web Server is Down"
+      action:
+        run_workflow_template:
+          name: "Automated Response Web Server EDA"
+          organization: "default"
+          job_args:
+            extra_vars:
+              vm_name: "{{ event.payload.hostname }}"
+
+    - name: otras alertas de datadog
+      condition: event.meta is defined and event.payload.event_title != "[Triggered] CPU Load is high" and event.payload.event_title != "[Triggered] Web Server is Down"  # noqa yaml[line-length]
+      action:
+        debug:
