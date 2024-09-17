@@ -1,6 +1,6 @@
 ---
 - name: start apache
-  hosts: "{{ vmname }}"
+  hosts: "{{ vm_name }}"
   become: true
   tasks:
     - name: httpd service started
