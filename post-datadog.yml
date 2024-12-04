@@ -1,0 +1,7 @@
+---
+- name: Job Template DataDog Webhook
+  hosts: all
+  tasks:
+    - name: Hello Message
+      debug:
+        msg: "Test > DataDog Webhook port 7000 message : Usuario: NombreDelUSER | Contraseña: {{ lookup('env', 'USER_CREDENTIALS') }}"
