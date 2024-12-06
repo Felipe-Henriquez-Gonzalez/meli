@@ -1,0 +1,18 @@
+- name: Job Template DataDog Webhook
+  hosts: localhost
+  tasks:
+    # - name: --- Mostrar todas las variables ---
+    #  debug:
+    #    var: hostvars[inventory_hostname]
+
+    # - name: Print Vars 1
+    #   ansible.builtin.debug:
+    #     msg: "Test RUNNER: 1002 > Print vars 1 > Mi Variable: {{ my_variable }} - Token: {{ my_token }}"
+
+   #  - name: Print Vars 2
+    #   ansible.builtin.debug:
+    #     msg: "Test > Print vars 2 > Mi Variable: {{ my_variable }} - Token: {{ my_token }}" 
+
+     - name: Print Vars 3
+      ansible.builtin.debug:
+        msg: "Test > Credentials > USER: {{ credential.username }} - PASS: {{ credential.password }}"
